@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Калкулатор – Книжарница „Кирил и Методий“</title>
+
+  <!-- Фикс за относителни пътища -->
+<script>
+  (function () {
+    try {
+      var href = location.href;
+      var dir = href.slice(0, href.lastIndexOf('/') + 1);
+      var base = document.createElement('base');
+      base.href = dir;
+      if (!document.querySelector('base')) document.head.appendChild(base);
+    } catch (e) { /* no-op */ }
+  })();
+</script>
+
+<link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+
+    <!-- 👉 групираме логото и текста заедно -->
+    <div class="brand-left">
+      <img src="./logo.png" alt="Лого" class="site-logo">
+      <div class="brand-text">
+        <h1>Копирен Център</h1>
+        <p class="subtitle">Калкулатор за копирни и печатни услуги</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button id="themeToggle" class="btn small">🌙</button>
+    </div>
+
+  </div> <!-- ✅ затваря .brand -->
+</header>
+
+<main class="container">
+<!-- Навигационни раздели -->
+<section class="main-tabs" id="tabs">
+  <button class="tab active" data-tab="about" title="За нас">
+  <img src="logo-mini.png" alt="Лого" class="tab-logo logo-only">
+</button>
+  <button class="tab" data-tab="copy">Копиране</button>
+  <button class="tab" data-tab="wide">Широкоформатен печат</button>
+  <button class="tab" data-tab="scan">Сканиране</button>
+  <button class="tab" data-tab="bind">Подвързване</button>
+  <button class="tab" data-tab="lam">Ламиниране</button>
+  <button class="tab" data-tab="cards">Визитки</button>
+  <button class="tab" data-tab="labels">Етикети</button>
+  <button class="tab" data-tab="stamps">Фирмени печати</button>
+  <button class="tab" data-tab="invoice">Данъчни фактури</button>
+  <button class="tab" data-tab="services">Услуги</button>
+</section>
+
+<!-- ===== ЗА НАС ===== -->
+<section class="panel section" id="sec-about" data-section="about" aria-hidden="false">
+  <div class="panel-head"><h2>За нас</h2></div>
+
+  <div class="about-content">
+    <p>Добре дошли в <strong>Копирния център на „Кирил и Методий“</strong> — място, където качеството и професионализмът срещат модерните технологии. Ние предлагаме пълен набор от копирни и печатни услуги, насочени както към частни клиенти, така и към фирми.</p>
+
+   <div class="about-gallery">
+  <img src="./public/IMG_1757.jpeg" alt="Работно пространство">
+  <img src="./public/IMG_1758.jpeg" alt="Обслужване на клиенти">
+  <img src="./public/IMG_1762.jpeg" alt="Професионални принтери">
+  <img src="./public/IMG_1761.jpeg" alt="Работно пространство">
+  <img src="./public/IMG_1760.jpeg" alt="Обслужване на клиенти">
+  <img src="./public/IMG_1759.jpeg" alt="Професионални принтери">
+</div>
+
+    <p>Нашият екип работи с внимание към детайла и поставя клиента в центъра на процеса. Вярваме, че всяка поръчка заслужава лично отношение — независимо дали става дума за единично копие или цял фирмен проект. 
+      <strong>Нашите граници са Вашето въображение...</strong></p>
+
+    <button class="btn primary" onclick="window.location.href='mailto:paper.png@gmail.com'">📞 Свържете се с нас</button>
+<h3 class="map-title">📍 Къде да ни откриете</h3>
+<div class="about-map">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.128756034544!2d23.204518840744093!3d41.39301009576539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14aa2810ba7e247d%3A0x28523e64c4cda595!2z0JrQndCY0JbQkNCg0J3QmNCm0JAg4oCc0JrQmNCg0JjQmyDQmCDQnNCV0KLQntCU0JjQmeKAnQ!5e0!3m2!1sbg!2sbg!4v1762283434610!5m2!1sbg!2sbg"
+    width="600"
+    height="450"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+    <!-- Контактна зона -->
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="icon">☎️</span>
+        <p><strong>Телефон:</strong><br><a href="tel:+359 898 91 01 01">+359 898 91 01 01</a></p>
+      </div>
+      <div class="contact-item">
+        <span class="icon">📧</span>
+        <p><strong>Имейл:</strong><br><a href="mailto:paper.png@gmail.com">paper.png@gmail.com</a></p>
+      </div>
+      <div class="contact-item">
+        <span class="icon">🕒</span>
+        <p><strong>Работно време:</strong><br>Пон–Пет: 9:00–18:00<br>Събота: 10:00–15:00</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Копиране ===== -->
+<section class="panel section hidden" id="sec-copy" data-section="copy" aria-hidden="true">
+  <div class="panel-head"><h2>Копиране</h2></div>
+
+  <div class="grid">
+    <div class="field">
+      <label for="format">Формат</label>
+      <select id="format">
+        <option value="A4" selected>A4</option>
+        <option value="A3">A3</option>
+      </select>
+    </div>
+
+        <div class="field">
+          <label for="sides">Страна на печат</label>
+          <select id="sides">
+            <option value="single" selected>Едностранно</option>
+            <option value="double">Двустранно</option>
+          </select>
+        </div>
+
+       <div class="field">
+  <label for="colorMode">Цветност</label>
+  <select id="colorMode">
+    <option value="bw" selected>Черно-бяло</option>
+    <option value="color">Цветно</option>
+  </select>
+</div>
+
+
+        <div class="field">
+          <label for="qty">Количество (бр.)</label>
+          <input id="qty" type="number" min="1" value="1" />
+        </div>
+
+        <div class="field field-wide">
+          <label for="media">Тип медия (добавка към цена)</label>
+          <select id="media"></select>
+          <small class="hint">По подразбиране: Хартия 80 гр. (0.00 лв.).</small>
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="price">
+          <span>Цена:</span>
+          <strong id="rowTotalBGN">0.00 лв.</strong>
+          <span class="muted" id="rowTotalEUR">(~0.00 €)</span>
+        </div>
+        <div class="actions">
+          <button id="addBtn" class="btn primary">Добави към сметка</button>
+          <button id="clearCopy" class="btn">Изчисти</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Широкоформатен печат ===== -->
+    <section class="panel section hidden" id="sec-wide" data-section="wide" aria-hidden="true">
+      <div class="panel-head"><h2>Широкоформатен печат</h2></div>
+
+      <div class="grid">
+        <div class="field">
+          <label for="wfWidth">Широчина (мм) – макс 914</label>
+          <input id="wfWidth" type="number" min="1" max="914" value="500" />
+        </div>
+        <div class="field">
+          <label for="wfHeight">Височина (мм)</label>
+          <input id="wfHeight" type="number" min="1" value="700" />
+        </div>
+
+        <div class="field">
+  <label for="wfColor">Цветност</label>
+  <select id="wfColor">
+    <option value="color" selected>Цветно</option>
+    <option value="bw">Черно-бяло</option>
+  </select>
+</div>
+
+        <div class="field field-wide">
+          <label for="wfMedia">Тип медия (добавка към цена за м²)</label>
+          <select id="wfMedia"></select>
+          <small class="hint">По подразбиране: Хартия 80 гр. (0.00 лв./м²).</small>
+        </div>
+      </div>
+
+      <div class="grommet-row">
+        <label class="check">
+          <input type="checkbox" id="wfGrommets" />
+          <span>Поставяне на капси (0.50 €/бр.)</span>
+        </label>
+        <div class="caps-info">
+          <span>Брой капси: <strong id="wfCapsCount">0</strong></span>
+          <button id="wfCapsClear" class="btn small">Изчисти капсите</button>
+        </div>
+      </div>
+
+      <div id="wfPreviewWrap" class="preview-wrap hidden">
+        <canvas id="wfCanvas" width="520" height="300" aria-label="Преглед на платното"></canvas>
+        <div class="preview-legend">
+          Щракнете върху платното, за да добавите/премахнете капса. Размерът е мащабиран пропорционално.
+        </div>
+        <button id="wfDownload" class="btn small outline" style="margin-top:8px;">Свали изображението</button>
+      </div>
+
+      <div class="result">
+        <div class="price">
+          <span>Площ:</span>
+          <strong id="wfArea">0.000 м²</strong>
+          <span class="muted sep">|</span>
+          <span>Ед. цена:</span>
+          <strong id="wfUnit">0.00 лв./м²</strong>
+          <span class="muted sep">|</span>
+          <span>Цена:</span>
+          <strong id="wfRowBGN">0.00 лв.</strong>
+          <span class="muted" id="wfRowEUR">(~0.00 €)</span>
+        </div>
+        <div class="actions">
+          <button id="wfAdd" class="btn primary">Добави към сметка</button>
+          <button id="wfClear" class="btn">Изчисти</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Сканиране ===== -->
+    <section class="panel section hidden" id="sec-scan" data-section="scan" aria-hidden="true">
+      <div class="panel-head"><h2>Сканиране</h2></div>
+      <div class="grid">
+        <div class="field">
+          <label for="scanSize">Размер</label>
+          <select id="scanSize">
+  <option value="0.50">A4 (0.26 €)</option>
+  <option value="1.00">A3 (0.51 €)</option>
+  <option value="3.00">A2 (1.53 €)</option>
+  <option value="3.50">A1 (1.79 €)</option>
+  <option value="4.00">A0 (2.05 €)</option>
+</select>
+        </div>
+        <div class="field">
+          <label for="scanQty">Количество (бр.)</label>
+          <input id="scanQty" type="number" min="1" value="1" />
+        </div>
+        <div class="field">
+          <label for="scanDPI">Резолюция</label>
+          <select id="scanDPI">
+            <option>100 DPI</option>
+            <option>150 DPI</option>
+            <option>200 DPI</option>
+            <option selected>300 DPI</option>
+            <option>400 DPI</option>
+            <option>600 DPI</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="scanColor">Цветност</label>
+          <select id="scanColor">
+            <option>Черно-бяло</option>
+            <option selected>Цветно</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="scanFormat">Формат</label>
+          <select id="scanFormat">
+            <option selected>PDF</option>
+            <option>JPG</option>
+            <option>PNG</option>
+            <option>TIFF</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="price">
+          <span>Цена:</span>
+          <strong id="scanRowBGN">0.00 лв.</strong>
+          <span class="muted" id="scanRowEUR">(~0.00 €)</span>
+        </div>
+        <div class="actions">
+          <button id="scanAdd" class="btn primary">Добави към сметка</button>
+          <button id="scanClear" class="btn">Изчисти</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Подвързване ===== -->
+    <section class="panel section hidden" id="sec-bind" data-section="bind" aria-hidden="true">
+      <div class="panel-head"><h2>Подвързване</h2></div>
+      <div class="grid">
+        <div class="field">
+          <label for="bindFormat">Размер</label>
+          <select id="bindFormat">
+            <option value="A4" selected>A4</option>
+            <option value="A3">A3</option>
+          </select>
+        </div>
+        <div class="field field-wide">
+          <label for="bindType">Тип подвързване</label>
+          <select id="bindType"></select>
+          <small id="bindNote" class="hint" style="display:none;">подвързването ще бъде по късата страна на листа А3</small>
+        </div>
+        <div class="field">
+          <label for="bindQty">Количество (бр.)</label>
+          <input id="bindQty" type="number" min="1" value="1" />
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="price">
+          <span>Цена:</span>
+          <strong id="bindRowBGN">0.00 лв.</strong>
+          <span class="muted" id="bindRowEUR">(~0.00 €)</span>
+        </div>
+        <div class="actions">
+          <button id="bindAdd" class="btn primary">Добави към сметка</button>
+          <button id="bindClear" class="btn">Изчисти</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Ламиниране ===== -->
+    <section class="panel section hidden" id="sec-lam" data-section="lam" aria-hidden="true">
+      <div class="panel-head"><h2>Ламиниране</h2></div>
+      <div class="grid">
+        <div class="field">
+          <label for="lamSize">Формат</label>
+          <select id="lamSize">
+            <option value="0.70">A5 (0.36 €)</option>
+            <option value="1.00" selected>A4 (0.51 €)</option>
+            <option value="2.00">A3 (1.02 €)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="lamMic">Микрони</label>
+          <select id="lamMic">
+            <option value="80" selected>80 mic</option>
+            <option value="120" disabled>120 mic</option>
+          </select>
+          <small class="hint">120 mic е временно недостъпно</small>
+        </div>
+        <div class="field">
+          <label for="lamQty">Количество (бр.)</label>
+          <input id="lamQty" type="number" min="1" value="1" />
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="price">
+          <span>Цена:</span>
+          <strong id="lamRowBGN">0.00 лв.</strong>
+          <span class="muted" id="lamRowEUR">(~0.00 €)</span>
+        </div>
+        <div class="actions">
+          <button id="lamAdd" class="btn primary">Добави към сметка</button>
+          <button id="lamClear" class="btn">Изчисти</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Визитки ===== -->
+    <section class="panel section hidden" id="sec-cards" data-section="cards" aria-hidden="true">
+      <div class="panel-head"><h2>Визитки</h2></div>
+      <div class="grid">
+        <div class="field">
+          <label for="cardsPacks">Комплекти</label>
+          <select id="cardsPacks">
+            <option value="100" selected>100 бр.</option>
+            <option value="200">200 бр.</option>
+            <option value="300">300 бр.</option>
+            <option value="400">400 бр.</option>
+            <option value="500">500 бр.</option>
+            <option value="600">600 бр.</option>
+            <option value="700">700 бр.</option>
+            <option value="800">800 бр.</option>
+            <option value="900">900 бр.</option>
+            <option value="1000">1000 бр.</option>
+          </select>
+          <small class="hint">Размер 90×50 мм, цената е за 100 бр., умножава се по броя комплекти.</small>
+        </div>
+        <div class="field">
+          <label for="cardsColor">Цветност</label>
+          <select id="cardsColor">
+            <option value="color" selected>Цветни</option>
+            <option value="bw">Черно-бели</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cardsSize">Размер на визитката</label>
+          <select id="cardsSize">
+            <option value="90x50" selected>90×50 мм</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cardsSides">Страна на печат</label>
+          <select id="cardsSides">
+            <option value="single" selected>Едностранно</option>
+            <option value="double">Двустранно</option>
+          </select>
+        </div>
+        <div class="field field-wide">
+          <label for="cardsPaper">Тип хартия</label>
+          <select id="cardsPaper">
+            <option value="350" selected>Картон 350 гр. – Полугланц</option>
+            <option value="pearl">Перлен картон 250 гр.</option>
+            <option value="pvc">PVC лист</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="price">
+          <span>Цена:</span>
+          <strong id="cardsRowBGN">0.00 лв.</strong>
+          <span class="muted" id="cardsRowEUR">(~0.00 €)</span>
+        </div>
+        <div class="actions">
+          <button id="cardsAdd" class="btn primary">Добави към сметка</button>
+          <button id="cardsClear" class="btn">Изчисти</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Етикети ===== -->
+    <section class="panel section hidden" id="sec-labels" data-section="labels" aria-hidden="true">
+      <div class="panel-head"><h2>Етикети</h2></div>
+
+      <div class="grid">
+        <div class="field">
+          <label>Печат</label>
+          <div>
+            <label><input type="radio" name="lblPrint" value="printed" checked> Напечатани</label>
+            <span class="sep">|</span>
+            <label><input type="radio" name="lblPrint" value="blank"> Ненапечатани</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Материал</label>
+          <div>
+            <label><input type="radio" name="lblMaterial" value="semi" checked> Полугланц</label>
+            <span class="sep">|</span>
+            <label><input type="radio" name="lblMaterial" value="thermal"> Термо</label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="lblSize">Размер</label>
+          <select id="lblSize"></select>
+          <small class="hint">Визуализацията е пропорционална на избрания размер. 20×30 мм е пейзажна.</small>
+        </div>
+        <div class="field">
+          <label for="lblRolls">Количество (ролки)</label>
+          <input id="lblRolls" type="number" min="1" value="1" />
+          <small class="hint">Цените са за 1000 бр. етикети. 1 ролка = 1000 бр.</small>
+        </div>
+        <div class="field field-wide">
+          <label for="lblText">Текст върху етикета</label>
+          <input id="lblText" type="text" placeholder="Въведете текст..." />
+          <small class="hint">Текстът автоматично се побира в рамката (намалява шрифт/прави пренасяне).</small>
+        </div>
+        <div class="field field-wide">
+          <label>Визуализация</label>
+          <div class="preview-wrap">
+            <canvas id="lblCanvas" width="420" height="180"></canvas>
+            <button id="lblDownload" class="btn small outline" style="margin-top:8px;">Свали изображението</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="price">
+          <span>Цена:</span>
+          <strong id="lblRowBGN">0.00 лв.</strong>
+          <span class="muted" id="lblRowEUR">(~0.00 €)</span>
+        </div>
+        <div class="actions">
+          <button id="lblAdd" class="btn primary">Добави към сметка</button>
+          <button id="lblClear" class="btn">Изчисти</button>
+        </div>
+      </div>
+    </section>
+
+  <!-- ===== Фирмени печати ===== -->
+<section class="panel section hidden" id="sec-stamps" data-section="stamps" aria-hidden="true">
+  <div class="panel-head"><h2>Фирмени печати</h2></div>
+
+  <div class="grid">
+    <div class="field">
+      <label for="stampBrand">Модел</label>
+      <select id="stampBrand">
+        <option value="brother" selected>Brother</option>
+        <option value="colop">Colop Pocket</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="stampSize">Размер</label>
+      <select id="stampSize"></select>
+    </div>
+    <div class="field">
+      <label for="stampColor">Цвят мастило</label>
+      <select id="stampColor">
+        <option value="#1f4ed8" selected>Син</option>
+        <option value="#111827">Черен</option>
+        <option value="#0f766e">Зелен</option>
+        <option value="#b91c1c">Червен</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="stampQty">Количество (бр.)</label>
+      <input id="stampQty" type="number" min="1" value="1" />
+    </div>
+
+    <div class="field field-wide" id="roundFields">
+      <label>Текст по дъгата (кръгъл печат)</label>
+      <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:10px;">
+        <input id="roundTop" type="text" placeholder="Горен текст" />
+        <input id="roundBottom" type="text" placeholder="Долен текст" />
+      </div>
+      <div style="margin-top:8px;">
+        <input id="roundCenter" type="text" placeholder="Централен текст" />
+      </div>
+    </div>
+
+    <div class="field field-wide" id="rectFields">
+      <label>Данни за правоъгълен печат</label>
+      <div class="grid" style="grid-template-columns:repeat(2,1fr);gap:10px;">
+        <input id="rectCompany" type="text" placeholder="Име на фирмата" />
+        <input id="rectCity" type="text" placeholder="Държава / Град / Пощенски код" />
+        <input id="rectStreet" type="text" placeholder="Улица / адрес" />
+        <input id="rectVAT" type="text" placeholder="VAT / ЕИК" />
+      </div>
+    </div>
+  </div>
+
+  <div class="stamp-preview">
+    <canvas id="stampCanvas" width="420" height="300" aria-label="Визуализация на печат"></canvas>
+    <div class="preview-legend">Преглед на печата в реално време</div>
+    <button id="stampDownload" class="btn small outline" style="margin-top:8px;">Свали изображението</button>
+  </div>
+
+  <div class="result">
+    <div class="price">
+      <span>Цена:</span>
+      <strong id="stampRowBGN">0.00 лв.</strong>
+      <span class="muted" id="stampRowEUR">(~0.00 €)</span>
+    </div>
+    <div class="actions">
+      <button id="stampAdd" class="btn primary">Добави към сметка</button>
+      <button id="stampClear" class="btn">Изчисти</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Данъчни фактури ===== -->
+<section class="panel section hidden" id="sec-invoice" data-section="invoice" aria-hidden="true">
+  <div class="panel-head"><h2>Данъчни фактури</h2></div>
+
+  <!-- Всичко вътре в grid -->
+  <div class="grid">
+    <div class="field"><label for="invCompany">Име на фирмата</label><input id="invCompany" type="text" /></div>
+    <div class="field"><label for="invEIK">ЕИК / Булстат</label><input id="invEIK" type="text" /></div>
+    <div class="field"><label for="invMOL">М.О.Л.</label><input id="invMOL" type="text" /></div>
+    <div class="field"><label for="invAddr">Адрес</label><input id="invAddr" type="text" /></div>
+
+    <div class="field"><label for="invEmail">Имейл за изпращане</label><input id="invEmail" type="email" /></div>
+    <div class="field"><label for="invBank">Име на банка</label><input id="invBank" type="text" /></div>
+    <div class="field"><label for="invSwift">SWIFT/BIC код</label><input id="invSwift" type="text" /></div>
+    <div class="field"><label for="invIban">Разпл. сметка в евро</label><input id="invIban" type="text" placeholder="IBAN в евро" /></div>
+
+    <div class="field">
+      <label for="invFormat">Формат</label>
+      <select id="invFormat">
+        <option value="14">A4 – 7.16 €</option>
+        <option value="8.9">A5 – 4.55 €</option>
+        <option value="14">2/3 A4 – 7.16 €</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="invCopies">Брой екземпляра</label>
+      <select id="invCopies">
+        <option value="1">Оригинал + 1 копие</option>
+        <option value="2">Оригинал + 2 копия</option>
+        <option value="3">Оригинал + 3 копия</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="invQty">Количество (бр.)</label>
+      <input id="invQty" type="number" min="1" value="1" />
+      <small class="hint">1 кочан съдържа 100 листа</small>
+      <small id="invWarning" class="hint" style="color:#b91c1c;display:none;">❗ Може да се въвеждат само четни количества.</small>
+    </div>
+  </div>
+
+  <!-- Тези две са извадени извън grid => ще отидат най-отдолу -->
+  <div class="field field-wide" style="margin-top: 10px;">
+    <label><input type="checkbox" id="invNumbering" /> Номериране</label>
+    <input id="invNumber" type="text" placeholder="Въведете 10-цифрен номер" maxlength="10" style="display:none;" />
+  </div>
+
+  <div class="field field-wide" style="margin-top: 8px;">
+    <label><input type="checkbox" id="invNewCliche" /> Ново клише 2.56 €</label>
+  </div>
+
+  <div class="result">
+    <div class="price">
+      <span>Цена:</span>
+      <strong id="invRowBGN">0.00 €</strong>
+    </div>
+    <div class="actions">
+      <button id="invAdd" class="btn primary">Добави към сметка</button>
+      <button id="invClear" class="btn">Изчисти</button>
+    </div>
+  </div>
+</section>
+
+    <!-- ===== Услуги ===== -->
+    <section class="panel section hidden" id="sec-services" data-section="services" aria-hidden="true">
+      <div class="panel-head"><h2>Услуги</h2></div>
+
+      <div class="grid">
+        <div class="field field-wide">
+          <label>Изберете услуга</label>
+          <div id="servicesList" class="services-list">
+            <button class="btn service-btn" data-key="print"  data-price="0.51"  data-peritem="true">
+  Разпечатване на файлове — 0.51 €
+</button>
+
+<button class="btn service-btn" data-key="save"   data-price="2.05"  data-peritem="true">
+  Записване на информация — 2.05 €
+</button>
+
+<button class="btn service-btn" data-key="email"  data-price="1.53"  data-peritem="true">
+  Изпращане на мейл — 1.53 €
+</button>
+
+<button class="btn service-btn" data-key="pcwork" data-price="10.23" data-peritem="true">
+  Работа на компютър до 30 минути — 10.23 €
+</button>
+
+<button class="btn service-btn" data-key="typing" data-price="2.56"  data-peritem="true">
+  Въвеждане на текст — 2.56 € / страница
+</button>
+
+<button class="btn service-btn" data-key="cut"    data-price="1.53"  data-peritem="true">
+  Рязане на всеки започнати 10 листа / картони — 1.53 €
+</button>
+
+<button class="btn service-btn" data-key="cut1"    data-price="2.50"  data-peritem="true">
+  Детайлно рязане по форма на всеки започнати 10 листа / картони — 2.50 €
+</button>
+
+<button class="btn service-btn" data-key="round"  data-price="0.13"  data-peritem="true">
+  Заобляне на ъгли — 0.13 € / брой
+</button>
+
+<button class="btn service-btn" data-key="big"    data-price="0.05"  data-peritem="true">
+  Биговане — 0.05 € / брой
+</button>
+
+<button class="btn service-btn" data-key="micro"  data-price="0.05"  data-peritem="true">
+  Микроперфорация — 0.05 € / брой
+</button>
+
+<button class="btn service-btn" data-key="cut1"    data-price="20.00"  data-peritem="true">
+  Създаване на дигитален ценоразпис/сайт (1 страница)— 20.00 €
+</button>
+
+<button class="btn service-btn" data-key="cut2"    data-price="10.00"  data-peritem="true">
+  NFC таг + настройка — 10.00 €
+</button>
+
+<button class="btn service-btn" data-key="cut3"    data-price="25.00"  data-peritem="true">
+  ПВЦ карта с NFC + настройка — 25.00 €
+</button>
+
+          </div>
+          <small class="hint">Ако услугата е „на брой/страница“, ползвайте количеството отдолу.</small>
+        </div>
+
+        <div class="field">
+          <label for="serviceQty">Количество / Брой</label>
+          <input id="serviceQty" type="number" min="1" value="1" />
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="price">
+          <span>Цена:</span>
+          <strong id="serviceRowBGN">0.00 лв.</strong>
+          <span class="muted" id="serviceRowEUR">(~0.00 €)</span>
+        </div>
+        <div class="actions">
+          <button id="serviceAdd" class="btn primary" disabled>Добави към сметка</button>
+          <button id="serviceClear" class="btn">Изчисти</button>
+        </div>
+      </div>
+    </section>
+
+<!-- ===== Обща сметка ===== -->
+<section class="panel" id="summary">
+  <div class="panel-head">
+    <h2>Обща сметка</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table class="bill" id="billTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Услуга</th>
+          <th>Детайли</th>
+          <th>Цена (€)</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="billBody"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="right"><strong>Общо:</strong></td>
+          <td><strong id="grandBGN">0.00 €</strong></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="bill-actions">
+    <button id="savePDF" class="btn">Запази като PDF</button>
+    <button id="sendOffer" class="btn primary">Изпрати за изработка</button>
+    <button id="clearBill" class="btn danger">Изчисти сметката</button>
+  </div>
+</section>
+<!-- ✅ Затваряме main точно тук -->
+</main>
+
+<!-- ===== Модал за изпращане ===== -->
+<div id="sendModal" class="modal hidden" aria-hidden="true">
+  <div class="modal-content">
+    <h2>Изпрати за изработка</h2>
+    <p class="slogan">Попълнете данните си, за да получим вашата заявка.</p>
+
+    <div class="grid">
+      <div class="field">
+        <label>Име на фирмата / клиент</label>
+        <input id="clientName" type="text" />
+      </div>
+
+      <div class="field">
+        <label>Имейл</label>
+        <input id="clientEmail" type="email" />
+      </div>
+
+      <div class="field">
+        <label>Телефон</label>
+        <input id="clientPhone" type="text" />
+      </div>
+
+      <div class="field field-wide">
+        <label>Бележка / пояснение</label>
+        <textarea id="clientMessage" rows="3"></textarea>
+      </div>
+
+      <div class="field field-wide">
+        <label><input type="checkbox" id="clientPickup" /> Ще взема от място</label><br />
+        <label><input type="checkbox" id="clientDelivery" /> Доставка до адрес (+2.50 €)</label>
+
+        <div id="deliveryFields" style="display:none;margin-top:8px;" class="grid">
+          <input id="clientCity" type="text" placeholder="Град" />
+          <input id="clientZip" type="text" placeholder="Пощенски код" />
+          <input id="clientStreet" type="text" placeholder="Улица / бул." />
+          <input id="clientNumber" type="text" placeholder="№ / вход / етаж / ап." />
+        </div>
+      </div>
+
+      <div class="field field-wide">
+        <label><input type="checkbox" id="clientInvoice" /> Желая издаване на фактура</label>
+      </div>
+
+      <!-- -------------- ЛИНК КЪМ ФАЙЛОВЕ (замества upload полето) -------------- -->
+      <div class="field field-wide">
+        <label for="clientFileLink">Прикачете линк към файловете ви.</label>
+        <input id="clientFileLink" type="text" placeholder="Линк към файл (Google Drive, WeTransfer, OneDrive и др.)" />
+      </div>
+      <!-- ----------------------------------------------------------------------- -->
+
+    </div>
+
+    <div class="result">
+      <div class="price">
+        <span>Обща сума за изработка:</span>
+        <strong id="finalTotalBGN">0.00 €</strong>
+      </div>
+
+      <div class="actions">
+        <button id="confirmSend" class="btn primary">Изпрати</button>
+        <button id="cancelSend" class="btn">Откажи</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div style="text-align:center;">
+    <div style="font-weight:600; font-size:14px;">© Philoscod</div>
+    <div style="color:#6b7280; font-size:12px;">Всички права запазени – 2025</div>
+  </div>
+</footer>
+
+<!-- ===== SPLASH SCREEN ===== -->
+<div id="splash-screen">
+  <img src="./logo.png" alt="Лого" class="splash-logo">
+  <h1 class="splash-title">Копирен Център</h1>
+</div>
+
+<!-- ===== CONFIG & SCRIPTS ===== -->
+<script>
+  window.canisterId = "epua2-tyaaa-aaaam-qdtsa-cai";
+  window.icHost = "https://icp1.io";
+</script>
+<script type="module" src="./script.js"></script>
+</body>
+</html>
